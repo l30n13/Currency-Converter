@@ -16,6 +16,13 @@
 		35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC22888378700ED08DA /* CurrencyModel.swift */; };
 		35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC52888382000ED08DA /* CurrencyViewModel.swift */; };
 		35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */; };
+		35868ED028894FF700ED08DA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 35868ECF28894FF700ED08DA /* Alamofire */; };
+		35868ED32889561E00ED08DA /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868ED22889561E00ED08DA /* NotificationName+Extension.swift */; };
+		35868ED528895A1E00ED08DA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868ED428895A1E00ED08DA /* RequestManager.swift */; };
+		35868ED828895A5200ED08DA /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868ED728895A5200ED08DA /* LogHelper.swift */; };
+		35868EDA288968FE00ED08DA /* ApiEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868ED9288968FE00ED08DA /* ApiEndpoints.swift */; };
+		35868EDD288969DC00ED08DA /* NotificationBannerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 35868EDC288969DC00ED08DA /* NotificationBannerSwift */; };
+		35868EDF28896B0B00ED08DA /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,11 @@
 		35868EC22888378700ED08DA /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		35868EC52888382000ED08DA /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterVC.swift; sourceTree = "<group>"; };
+		35868ED22889561E00ED08DA /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		35868ED428895A1E00ED08DA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		35868ED728895A5200ED08DA /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
+		35868ED9288968FE00ED08DA /* ApiEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoints.swift; sourceTree = "<group>"; };
+		35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35868ED028894FF700ED08DA /* Alamofire in Frameworks */,
+				35868EDD288969DC00ED08DA /* NotificationBannerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +113,9 @@
 		35868E902888362400ED08DA /* PayPay Demo */ = {
 			isa = PBXGroup;
 			children = (
+				35868ED628895A4600ED08DA /* Helper */,
+				35868ED12889560700ED08DA /* Extensions */,
+				35868ECB28894F7500ED08DA /* Managers */,
 				35868EC928894C6000ED08DA /* Views */,
 				35868EC42888380600ED08DA /* ViewModels */,
 				35868EC12888375B00ED08DA /* Models */,
@@ -151,6 +168,32 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		35868ECB28894F7500ED08DA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */,
+				35868ED428895A1E00ED08DA /* RequestManager.swift */,
+				35868ED9288968FE00ED08DA /* ApiEndpoints.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		35868ED12889560700ED08DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				35868ED22889561E00ED08DA /* NotificationName+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		35868ED628895A4600ED08DA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				35868ED728895A5200ED08DA /* LogHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,12 +204,17 @@
 				35868E8A2888362400ED08DA /* Sources */,
 				35868E8B2888362400ED08DA /* Frameworks */,
 				35868E8C2888362400ED08DA /* Resources */,
+				35868EE028896B5F00ED08DA /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "PayPay Demo";
+			packageProductDependencies = (
+				35868ECF28894FF700ED08DA /* Alamofire */,
+				35868EDC288969DC00ED08DA /* NotificationBannerSwift */,
+			);
 			productName = "PayPay Demo";
 			productReference = 35868E8E2888362400ED08DA /* PayPay Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -239,6 +287,10 @@
 				Base,
 			);
 			mainGroup = 35868E852888362400ED08DA;
+			packageReferences = (
+				35868ECE28894FF700ED08DA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				35868EDB288969DC00ED08DA /* XCRemoteSwiftPackageReference "NotificationBanner" */,
+			);
 			productRefGroup = 35868E8F2888362400ED08DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,13 +328,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		35868EE028896B5F00ED08DA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		35868E8A2888362400ED08DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35868EDF28896B0B00ED08DA /* ReachabilityManager.swift in Sources */,
 				35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */,
 				35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */,
+				35868ED32889561E00ED08DA /* NotificationName+Extension.swift in Sources */,
+				35868EDA288968FE00ED08DA /* ApiEndpoints.swift in Sources */,
+				35868ED828895A5200ED08DA /* LogHelper.swift in Sources */,
+				35868ED528895A1E00ED08DA /* RequestManager.swift in Sources */,
 				35868E922888362400ED08DA /* AppDelegate.swift in Sources */,
 				35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */,
 			);
@@ -618,6 +695,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35868ECE28894FF700ED08DA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		35868EDB288969DC00ED08DA /* XCRemoteSwiftPackageReference "NotificationBanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Daltron/NotificationBanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35868ECF28894FF700ED08DA /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35868ECE28894FF700ED08DA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		35868EDC288969DC00ED08DA /* NotificationBannerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35868EDB288969DC00ED08DA /* XCRemoteSwiftPackageReference "NotificationBanner" */;
+			productName = NotificationBannerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35868E862888362400ED08DA /* Project object */;
 }

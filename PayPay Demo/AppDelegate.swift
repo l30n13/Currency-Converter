@@ -12,9 +12,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         setupEntryPoint()
         return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        ReachabilityManager.sharedInstance.stopListening()
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        ReachabilityManager.sharedInstance.stopListening()
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        ReachabilityManager.sharedInstance.startListing()
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        ReachabilityManager.sharedInstance.stopListening()
     }
 }
 
