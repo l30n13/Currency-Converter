@@ -23,6 +23,13 @@
 		35868EDA288968FE00ED08DA /* ApiEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868ED9288968FE00ED08DA /* ApiEndpoints.swift */; };
 		35868EDD288969DC00ED08DA /* NotificationBannerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 35868EDC288969DC00ED08DA /* NotificationBannerSwift */; };
 		35868EDF28896B0B00ED08DA /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */; };
+		35868EEE288978AD00ED08DA /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35868EE5288978A300ED08DA /* DropDownCell.xib */; };
+		35868EEF288978B200ED08DA /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EE8288978A300ED08DA /* DPDConstants.swift */; };
+		35868EF0288978B200ED08DA /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EE9288978A300ED08DA /* DPDUIView+Extension.swift */; };
+		35868EF1288978B200ED08DA /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EE7288978A300ED08DA /* DPDKeyboardListener.swift */; };
+		35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EED288978A300ED08DA /* DropDown+Appearance.swift */; };
+		35868EF3288978B700ED08DA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEC288978A300ED08DA /* DropDownCell.swift */; };
+		35868EF4288978B700ED08DA /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEB288978A300ED08DA /* DropDown.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +68,14 @@
 		35868ED728895A5200ED08DA /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		35868ED9288968FE00ED08DA /* ApiEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoints.swift; sourceTree = "<group>"; };
 		35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		35868EE3288978A300ED08DA /* DropDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropDown.h; sourceTree = "<group>"; };
+		35868EE5288978A300ED08DA /* DropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
+		35868EE7288978A300ED08DA /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		35868EE8288978A300ED08DA /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
+		35868EE9288978A300ED08DA /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DPDUIView+Extension.swift"; sourceTree = "<group>"; };
+		35868EEB288978A300ED08DA /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
+		35868EEC288978A300ED08DA /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
+		35868EED288978A300ED08DA /* DropDown+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DropDown+Appearance.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,9 +204,57 @@
 		35868ED628895A4600ED08DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				35868EE12889789B00ED08DA /* Libs */,
 				35868ED728895A5200ED08DA /* LogHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		35868EE12889789B00ED08DA /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				35868EE2288978A300ED08DA /* DropDown */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		35868EE2288978A300ED08DA /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				35868EE4288978A300ED08DA /* resources */,
+				35868EE6288978A300ED08DA /* helpers */,
+				35868EEA288978A300ED08DA /* src */,
+				35868EE3288978A300ED08DA /* DropDown.h */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		35868EE4288978A300ED08DA /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				35868EE5288978A300ED08DA /* DropDownCell.xib */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		35868EE6288978A300ED08DA /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				35868EE7288978A300ED08DA /* DPDKeyboardListener.swift */,
+				35868EE8288978A300ED08DA /* DPDConstants.swift */,
+				35868EE9288978A300ED08DA /* DPDUIView+Extension.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		35868EEA288978A300ED08DA /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35868EEB288978A300ED08DA /* DropDown.swift */,
+				35868EEC288978A300ED08DA /* DropDownCell.swift */,
+				35868EED288978A300ED08DA /* DropDown+Appearance.swift */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35868EEE288978AD00ED08DA /* DropDownCell.xib in Resources */,
 				35868E9E2888362500ED08DA /* LaunchScreen.storyboard in Resources */,
 				35868E9B2888362500ED08DA /* Assets.xcassets in Resources */,
 			);
@@ -356,11 +420,17 @@
 				35868EDF28896B0B00ED08DA /* ReachabilityManager.swift in Sources */,
 				35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */,
 				35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */,
+				35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */,
+				35868EF1288978B200ED08DA /* DPDKeyboardListener.swift in Sources */,
+				35868EF4288978B700ED08DA /* DropDown.swift in Sources */,
 				35868ED32889561E00ED08DA /* NotificationName+Extension.swift in Sources */,
+				35868EF0288978B200ED08DA /* DPDUIView+Extension.swift in Sources */,
 				35868EDA288968FE00ED08DA /* ApiEndpoints.swift in Sources */,
 				35868ED828895A5200ED08DA /* LogHelper.swift in Sources */,
 				35868ED528895A1E00ED08DA /* RequestManager.swift in Sources */,
+				35868EF3288978B700ED08DA /* DropDownCell.swift in Sources */,
 				35868E922888362400ED08DA /* AppDelegate.swift in Sources */,
+				35868EEF288978B200ED08DA /* DPDConstants.swift in Sources */,
 				35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
