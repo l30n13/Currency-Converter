@@ -13,8 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        
+        setupEntryPoint()
         return true
     }
 }
 
+extension AppDelegate {
+    fileprivate func setupEntryPoint() {
+        let viewController = CurrencyConverterVC()
+        let navigationViewController = UINavigationController(rootViewController: viewController)
+        let window = UIWindow()
+        window.rootViewController = navigationViewController
+        window.makeKeyAndVisible()
+        self.window = window
+    }
+}
