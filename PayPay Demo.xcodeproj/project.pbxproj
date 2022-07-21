@@ -13,6 +13,9 @@
 		35868EA92888362500ED08DA /* PayPay_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EA82888362500ED08DA /* PayPay_DemoTests.swift */; };
 		35868EB32888362500ED08DA /* PayPay_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EB22888362500ED08DA /* PayPay_DemoUITests.swift */; };
 		35868EB52888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */; };
+		35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC22888378700ED08DA /* CurrencyModel.swift */; };
+		35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC52888382000ED08DA /* CurrencyViewModel.swift */; };
+		35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		35868EAE2888362500ED08DA /* PayPay DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PayPay DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35868EB22888362500ED08DA /* PayPay_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPay_DemoUITests.swift; sourceTree = "<group>"; };
 		35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPay_DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		35868EC22888378700ED08DA /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		35868EC52888382000ED08DA /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,9 @@
 		35868E902888362400ED08DA /* PayPay Demo */ = {
 			isa = PBXGroup;
 			children = (
+				35868EC928894C6000ED08DA /* Views */,
+				35868EC42888380600ED08DA /* ViewModels */,
+				35868EC12888375B00ED08DA /* Models */,
 				35868E912888362400ED08DA /* AppDelegate.swift */,
 				35868E9A2888362500ED08DA /* Assets.xcassets */,
 				35868E9C2888362500ED08DA /* LaunchScreen.storyboard */,
@@ -116,6 +125,30 @@
 				35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */,
 			);
 			path = "PayPay DemoUITests";
+			sourceTree = "<group>";
+		};
+		35868EC12888375B00ED08DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35868EC22888378700ED08DA /* CurrencyModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35868EC42888380600ED08DA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				35868EC52888382000ED08DA /* CurrencyViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		35868EC928894C6000ED08DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */,
+				35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */,
 				35868E922888362400ED08DA /* AppDelegate.swift in Sources */,
+				35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,9 +458,9 @@
 				INFOPLIST_FILE = "PayPay Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,7 +470,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,9 +486,9 @@
 				INFOPLIST_FILE = "PayPay Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,7 +498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
