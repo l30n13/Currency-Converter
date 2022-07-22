@@ -8,7 +8,7 @@
 import Foundation
 
 struct CurrenciesModel: Codable {
-    let currency : [String : String]?
+    let currency: [String: String]?
 }
 
 enum CurrencyEnum: String, CaseIterable {
