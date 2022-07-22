@@ -7,6 +7,8 @@
 
 import Foundation
 
+let APP_ID = "8204926d529943e7b59cc082e4a6dc8c"
+
 enum HttpURL: String {
     case LATEST_JSON           = "latest.json"
     case CURRENCIES_JSONN      = "currencies.json"

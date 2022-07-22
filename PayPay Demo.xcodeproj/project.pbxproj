@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3539E2F3288B0C13009AA81F /* LocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539E2F2288B0C13009AA81F /* LocalStorageManager.swift */; };
+		3539E2F6288B11C5009AA81F /* RequestManagerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3539E2F5288B11C5009AA81F /* RequestManagerEnums.swift */; };
 		35868E922888362400ED08DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868E912888362400ED08DA /* AppDelegate.swift */; };
 		35868E9B2888362500ED08DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35868E9A2888362500ED08DA /* Assets.xcassets */; };
 		35868E9E2888362500ED08DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35868E9C2888362500ED08DA /* LaunchScreen.storyboard */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		3539E2F2288B0C13009AA81F /* LocalStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
+		3539E2F5288B11C5009AA81F /* RequestManagerEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerEnums.swift; sourceTree = "<group>"; };
 		35868E8E2888362400ED08DA /* PayPay Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PayPay Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35868E912888362400ED08DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35868E9A2888362500ED08DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */,
 				35868ED428895A1E00ED08DA /* RequestManager.swift */,
+				3539E2F5288B11C5009AA81F /* RequestManagerEnums.swift */,
 				35868ED9288968FE00ED08DA /* ApiEndpoints.swift */,
 			);
 			path = Network;
@@ -440,6 +443,7 @@
 				35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */,
 				35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */,
 				35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */,
+				3539E2F6288B11C5009AA81F /* RequestManagerEnums.swift in Sources */,
 				35868EF1288978B200ED08DA /* DPDKeyboardListener.swift in Sources */,
 				35868EF4288978B700ED08DA /* DropDown.swift in Sources */,
 				35868ED32889561E00ED08DA /* NotificationName+Extension.swift in Sources */,

@@ -14,11 +14,11 @@ public enum LocalStorageKeys: String, CaseIterable {
 
 @propertyWrapper
 struct LocalStorage<T> {
-    private let defaultValue: T?
+    private let defaultValue: T
     private let key: LocalStorageKeys
     private let container: UserDefaults
 
-    var wrappedValue: T? {
+    var wrappedValue: T {
         get {
             container.object(forKey: key.rawValue) as? T ?? defaultValue
         }
