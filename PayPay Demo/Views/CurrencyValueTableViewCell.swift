@@ -30,6 +30,12 @@ class CurrencyValueTableViewCell: UITableViewCell {
         return label
     }()
 
+    override func prepareForReuse() {
+        currencyCodeLabel.text = nil
+        currencyDetailsLabel.text = nil
+        currencyRateLabel.text = nil
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -67,10 +73,10 @@ extension CurrencyValueTableViewCell {
 }
 
 extension CurrencyValueTableViewCell {
-    func populateCell(currencyCode: String?, currencyDetails: String?, amount: Double, baseValue: Double, convertInto: Double) {
+    func populateCell(currencyCode: String?, currencyDetails: String?, amount: Double, currencyValue: Double) {
         currencyCodeLabel.text = currencyCode
         currencyDetailsLabel.text = currencyDetails
 
-        currencyRateLabel.text = String(format: "%.2f", amount * baseValue * convertInto)
+        currencyRateLabel.text = String(format: "%.4f", amount * currencyValue)
     }
 }

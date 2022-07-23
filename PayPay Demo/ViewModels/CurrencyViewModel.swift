@@ -18,15 +18,16 @@ class CurrencyViewModel {
     @LocalStorage(key: .lastAPIFetchedTime, defaultValue: Date())
     var lastAPIFetchedTime: Date
 
-    @Published var currencyList: [String: String] = [:]
-    @Published var currencyRateList: [String: Double] = [:]
-    var selectedCurrencyCode: String?
+    @Published var currencyList: [String: String]?
+    @Published var currencyRateList: [String: Double]?
+    var baseCurrency: String = "USD"
+    var selectedCurrencyCode: String = "USD"
 
-    var sortedCurrencyCode: [String] {
-        currencyList.sorted { $0.key < $1.key }.map { $0.key }
+    var sortedCurrencyCode: [String]? {
+        currencyList?.sorted { $0.key < $1.key }.map { $0.key }
     }
-    var sortedCurrencyCodeDetails: [String] {
-        currencyList.sorted { $0.key < $1.key }.map { $0.value }
+    var sortedCurrencyCodeDetails: [String]? {
+        currencyList?.sorted { $0.key < $1.key }.map { $0.value }
     }
 
     func fetchData() {
@@ -129,5 +130,19 @@ extension CurrencyViewModel {
         let timePassed = Int(Date().timeIntervalSince(lastAPIFetchedTime))
 
         return timePassed < (30 * 60)
+    }
+}
+
+extension CurrencyViewModel {
+    func updateCurrencyRate() {
+        let currentRate = (currencyRateList?[baseCurrency] ?? 0.0) / (currencyRateList?[selectedCurrencyCode] ?? 0.0)
+        baseCurrency = selectedCurrencyCode
+        currencyRateList?[selectedCurrencyCode] = 1
+
+        for (k, v) in currencyRateList ?? [:] {
+            if k != selectedCurrencyCode {
+                currencyRateList?[k] = currentRate * v
+            }
+        }
     }
 }

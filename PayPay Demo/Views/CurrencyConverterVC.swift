@@ -58,9 +58,11 @@ class CurrencyConverterVC: UIViewController {
 
     private lazy var currenciesTableView: UITableView = {
         let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.rowHeight = 60
+        tableView.dataSource = self
         tableView.register(CurrencyValueTableViewCell.self, forCellReuseIdentifier: "CurrencyValueTableViewCell")
         return tableView
     }()
@@ -133,6 +135,7 @@ extension CurrencyConverterVC {
         dropDownView.selectionAction = { [unowned self] (_, item) in
             currencyLabel.text = item.uppercased()
             viewModel.selectedCurrencyCode = item
+            viewModel.updateCurrencyRate()
             dropDownView.hide()
             currenciesTableView.reloadData()
         }
@@ -141,8 +144,8 @@ extension CurrencyConverterVC {
 
 extension CurrencyConverterVC {
     private func bindView() {
-        viewModel.$currencyList.sink { [unowned self] (data) in
-            dropDownView.dataSource = data.sorted { $0.key < $1.key }.map { $0.key }
+        viewModel.$currencyRateList.sink { [unowned self] (data) in
+            dropDownView.dataSource = data?.sorted { $0.key < $1.key }.map { $0.key } ?? []
             DispatchQueue.main.async {
                 self.currenciesTableView.reloadData()
             }
@@ -162,18 +165,17 @@ extension CurrencyConverterVC {
 
 extension CurrencyConverterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.currencyRateList.count
+        return viewModel.currencyRateList?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyValueTableViewCell", for: indexPath) as! CurrencyValueTableViewCell
 
         cell.populateCell(
-            currencyCode: viewModel.sortedCurrencyCode[indexPath.row],
-            currencyDetails: viewModel.sortedCurrencyCodeDetails[indexPath.row],
+            currencyCode: viewModel.sortedCurrencyCode?[indexPath.row],
+            currencyDetails: viewModel.sortedCurrencyCodeDetails?[indexPath.row],
             amount: Double(amountTextFiled.text ?? "0.0") ?? 0.0,
-            baseValue: viewModel.currencyRateList[viewModel.selectedCurrencyCode ?? "0.0"] ?? 0.0,
-            convertInto: viewModel.currencyRateList[viewModel.sortedCurrencyCode[indexPath.row]] ?? 0.0
+            currencyValue: viewModel.currencyRateList?[viewModel.sortedCurrencyCode?[indexPath.row] ?? "USD"] ?? 0.0
         )
         return cell
     }
