@@ -56,7 +56,12 @@ class CurrencyViewModel {
         if let error = error {
             switch error {
             case .noInternet:
-                await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                if localCurrencyList.count > 0 {
+                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                    currencyList = localCurrencyList
+                } else {
+                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. You don't have any local data.Please connect to internet and try again.", style: .danger).show()
+                }
                 return "No Internet"
             case .unknownError:
                 return "Unknown Error"
@@ -101,7 +106,12 @@ class CurrencyViewModel {
         if let error = error {
             switch error {
             case .noInternet:
-                await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                if localCurrencyRateList.count > 0 {
+                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                    currencyRateList = localCurrencyRateList
+                } else {
+                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. You don't have any local data.Please connect to internet and try again.", style: .danger).show()
+                }
                 return "No Internet"
             case .unknownError:
                 return "Unknown Error"
