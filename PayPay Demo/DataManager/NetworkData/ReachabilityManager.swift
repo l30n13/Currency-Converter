@@ -35,5 +35,6 @@ class ReachabilityManager {
 
     func stopListening() {
         reachability?.stopListening()
+        DLog("Stopped Listing...")
     }
 }
