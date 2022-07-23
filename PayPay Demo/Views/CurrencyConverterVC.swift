@@ -58,6 +58,12 @@ class CurrencyConverterVC: UIViewController {
     private let dropDownView = DropDown()
     private var subscription = Set<AnyCancellable>()
 
+    private let viewModel = CurrencyViewModel()
+
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.fetchData()
+    }
+
     override func viewDidLoad() {
         view.backgroundColor = .white
 
@@ -98,6 +104,7 @@ extension CurrencyConverterVC {
         }
 
         setupFunctionality()
+        bindView()
     }
 }
 
@@ -109,6 +116,18 @@ extension CurrencyConverterVC {
             currencyLabel.text = item.uppercased()
             dropDownView.hide()
         }
+    }
+}
+
+extension CurrencyConverterVC {
+    private func bindView() {
+        viewModel.$currencyList.sink { [unowned self] (data) in
+            guard let currencyList = data else {
+                return
+            }
+
+            dropDownView.dataSource = Array(currencyList.keys)
+        }.store(in: &subscription)
     }
 }
 
