@@ -107,7 +107,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3539E2F0288B0B72009AA81F /* Network */ = {
+		3539E2F0288B0B72009AA81F /* NetworkData */ = {
 			isa = PBXGroup;
 			children = (
 				35868EDE28896B0B00ED08DA /* ReachabilityManager.swift */,
@@ -115,15 +115,15 @@
 				3539E2F5288B11C5009AA81F /* RequestManagerEnums.swift */,
 				35868ED9288968FE00ED08DA /* ApiEndpoints.swift */,
 			);
-			path = Network;
+			path = NetworkData;
 			sourceTree = "<group>";
 		};
-		3539E2F1288B0B7E009AA81F /* Local */ = {
+		3539E2F1288B0B7E009AA81F /* LocalData */ = {
 			isa = PBXGroup;
 			children = (
 				3539E2F2288B0C13009AA81F /* LocalStorageManager.swift */,
 			);
-			path = Local;
+			path = LocalData;
 			sourceTree = "<group>";
 		};
 		3551C2E7288BE1910068BC90 /* Models */ = {
@@ -158,7 +158,7 @@
 			children = (
 				35868ED628895A4600ED08DA /* Helper */,
 				35868ED12889560700ED08DA /* Extensions */,
-				35868ECB28894F7500ED08DA /* Managers */,
+				35868ECB28894F7500ED08DA /* DataManager */,
 				35868EC928894C6000ED08DA /* Views */,
 				35868EC42888380600ED08DA /* ViewModels */,
 				3551C2E7288BE1910068BC90 /* Models */,
@@ -203,13 +203,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		35868ECB28894F7500ED08DA /* Managers */ = {
+		35868ECB28894F7500ED08DA /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				3539E2F1288B0B7E009AA81F /* Local */,
-				3539E2F0288B0B72009AA81F /* Network */,
+				3539E2F1288B0B7E009AA81F /* LocalData */,
+				3539E2F0288B0B72009AA81F /* NetworkData */,
 			);
-			path = Managers;
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		35868ED12889560700ED08DA /* Extensions */ = {
