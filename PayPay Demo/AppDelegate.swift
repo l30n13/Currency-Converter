@@ -19,19 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        ReachabilityManager.sharedInstance.stopListening()
+        ReachabilityManager.shared.stopListening()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        ReachabilityManager.sharedInstance.stopListening()
+        ReachabilityManager.shared.stopListening()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        ReachabilityManager.sharedInstance.startListing()
+        ReachabilityManager.shared.startListing()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        ReachabilityManager.sharedInstance.stopListening()
+        ReachabilityManager.shared.stopListening()
     }
 }
 

@@ -21,7 +21,7 @@ struct RequestManager {
                         type: RequestType,
                         header: HTTPHeaders? = nil) async -> Response {
 
-        if !ReachabilityManager.sharedInstance.isReachable {
+        if !ReachabilityManager.shared.isReachable {
             DLog("No Internet.")
             return (nil, .noInternet)
         }
