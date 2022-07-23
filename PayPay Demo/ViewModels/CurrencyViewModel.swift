@@ -18,8 +18,16 @@ class CurrencyViewModel {
     @LocalStorage(key: .lastAPIFetchedTime, defaultValue: Date())
     var lastAPIFetchedTime: Date
 
-    @Published var currencyList: [String: String]?
-    @Published var currencyRateList: [String: Double]?
+    @Published var currencyList: [String: String] = [:]
+    @Published var currencyRateList: [String: Double] = [:]
+    var selectedCurrencyCode: String?
+
+    var sortedCurrencyCode: [String] {
+        currencyList.sorted { $0.key < $1.key }.map { $0.key }
+    }
+    var sortedCurrencyCodeDetails: [String] {
+        currencyList.sorted { $0.key < $1.key }.map { $0.value }
+    }
 
     func fetchData() {
         fetchCurrencyList()

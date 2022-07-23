@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import SnapKit
 import NotificationBannerSwift
+import SwiftUI
 
 class CurrencyConverterVC: UIViewController {
     private lazy var amountTextFiled: UITextField = {
@@ -55,12 +56,22 @@ class CurrencyConverterVC: UIViewController {
         return imageView
     }()
 
+    private lazy var currenciesTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.rowHeight = 60
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.register(CurrencyValueTableViewCell.self, forCellReuseIdentifier: "CurrencyValueTableViewCell")
+        return tableView
+    }()
+
     private let dropDownView = DropDown()
     private var subscription = Set<AnyCancellable>()
 
     private let viewModel = CurrencyViewModel()
 
     override func viewDidAppear(_ animated: Bool) {
+        title = "Currency converter"
         viewModel.fetchData()
     }
 
@@ -103,6 +114,14 @@ extension CurrencyConverterVC {
             make.height.equalTo(15)
         }
 
+        view.addSubview(currenciesTableView)
+        currenciesTableView.snp.makeConstraints { make in
+            make.top.equalTo(amountTextFiled.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+
         setupFunctionality()
         bindView()
     }
@@ -111,10 +130,11 @@ extension CurrencyConverterVC {
 extension CurrencyConverterVC {
     private func setupFunctionality() {
         dropDownView.anchorView = currencySelectionView
-        dropDownView.dataSource = ["usd", "aud"]
         dropDownView.selectionAction = { [unowned self] (_, item) in
             currencyLabel.text = item.uppercased()
+            viewModel.selectedCurrencyCode = item
             dropDownView.hide()
+            currenciesTableView.reloadData()
         }
     }
 }
@@ -122,11 +142,10 @@ extension CurrencyConverterVC {
 extension CurrencyConverterVC {
     private func bindView() {
         viewModel.$currencyList.sink { [unowned self] (data) in
-            guard let currencyList = data else {
-                return
+            dropDownView.dataSource = data.sorted { $0.key < $1.key }.map { $0.key }
+            DispatchQueue.main.async {
+                self.currenciesTableView.reloadData()
             }
-
-            dropDownView.dataSource = Array(currencyList.keys)
         }.store(in: &subscription)
     }
 }
@@ -137,6 +156,25 @@ extension CurrencyConverterVC {
     }
 
     @objc private func onChangeAmount() {
+        currenciesTableView.reloadData()
+    }
+}
 
+extension CurrencyConverterVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.currencyRateList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyValueTableViewCell", for: indexPath) as! CurrencyValueTableViewCell
+
+        cell.populateCell(
+            currencyCode: viewModel.sortedCurrencyCode[indexPath.row],
+            currencyDetails: viewModel.sortedCurrencyCodeDetails[indexPath.row],
+            amount: Double(amountTextFiled.text ?? "0.0") ?? 0.0,
+            baseValue: viewModel.currencyRateList[viewModel.selectedCurrencyCode ?? "0.0"] ?? 0.0,
+            convertInto: viewModel.currencyRateList[viewModel.sortedCurrencyCode[indexPath.row]] ?? 0.0
+        )
+        return cell
     }
 }
