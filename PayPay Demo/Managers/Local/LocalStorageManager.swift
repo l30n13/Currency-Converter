@@ -10,6 +10,7 @@ import Foundation
 public enum LocalStorageKeys: String, CaseIterable {
     case currencyNameList           = "currencyNameList"
     case currencyConversionRateList = "currencyConversionRateList"
+    case lastAPIFetchedTime         = "lastAPIFetchedTime"
 }
 
 @propertyWrapper

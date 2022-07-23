@@ -15,6 +15,9 @@ class CurrencyViewModel {
     @LocalStorage(key: .currencyConversionRateList, defaultValue: [:])
     var localCurrencyRateList: [String: Double]
 
+    @LocalStorage(key: .lastAPIFetchedTime, defaultValue: Date())
+    var lastAPIFetchedTime: Date
+
     @Published var currencyList: [String: String]?
     @Published var currencyRateList: [String: Double]?
 
@@ -24,11 +27,12 @@ class CurrencyViewModel {
     }
 
     private func fetchCurrencyList() {
-        if localCurrencyList.count > 0 {
+        if localCurrencyList.count > 0 && isNotMoreThan30Min() {
             currencyList = localCurrencyList
         } else {
             Task {
                 _ = await fetchCurrencyListFromAPI()
+                lastAPIFetchedTime = Date.now
             }
         }
     }
@@ -68,11 +72,12 @@ class CurrencyViewModel {
     }
 
     private func fetchCurrencyRateList() {
-        if localCurrencyRateList.count > 0 {
+        if localCurrencyRateList.count > 0 && isNotMoreThan30Min() {
             currencyRateList = localCurrencyRateList
         } else {
             Task {
                 _ = await fetchCurrencyRatesFromAPI()
+                lastAPIFetchedTime = Date.now
             }
         }
     }
@@ -108,5 +113,13 @@ class CurrencyViewModel {
         localCurrencyRateList = currencyRateList
 
         return nil
+    }
+}
+
+extension CurrencyViewModel {
+    func isNotMoreThan30Min() -> Bool {
+        let timePassed = Int(Date().timeIntervalSince(lastAPIFetchedTime))
+
+        return timePassed < (30 * 60)
     }
 }
