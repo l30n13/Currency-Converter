@@ -147,7 +147,9 @@ extension CurrencyConverterVC {
         viewModel.$currencyRateList.sink { [unowned self] (data) in
             dropDownView.dataSource = data?.sorted { $0.key < $1.key }.map { $0.key } ?? []
             DispatchQueue.main.async {
-                self.currenciesTableView.reloadData()
+                if !(self.viewModel.currencyList?.isEmpty ?? false) {
+                    self.currenciesTableView.reloadData()
+                }
             }
         }.store(in: &subscription)
     }

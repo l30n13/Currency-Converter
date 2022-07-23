@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import NotificationBannerSwift
 
 class CurrencyViewModel {
@@ -30,20 +31,29 @@ class CurrencyViewModel {
         currencyList?.sorted { $0.key < $1.key }.map { $0.value }
     }
 
+    private var subscription = Set<AnyCancellable>()
+
     func fetchData() {
         fetchCurrencyList()
         fetchCurrencyRateList()
     }
 
     private func fetchCurrencyList() {
-        if localCurrencyList.count > 0 && isNotMoreThan30Min() {
-            currencyList = localCurrencyList
-        } else {
-            Task {
-                _ = await fetchCurrencyListFromAPI()
-                lastAPIFetchedTime = Date.now
+        ReachabilityManager.shared.$isReachable.sink { [unowned self] isReachable in
+            guard isReachable else {
+                currencyList = localCurrencyList
+                return
             }
-        }
+
+            if localCurrencyList.count > 0 && isNotMoreThan30Min() {
+                currencyList = localCurrencyList
+            } else {
+                Task {
+                    _ = await fetchCurrencyListFromAPI()
+                    lastAPIFetchedTime = Date.now
+                }
+            }
+        }.store(in: &subscription)
     }
 
     private func fetchCurrencyListFromAPI() async -> String? {
@@ -56,12 +66,6 @@ class CurrencyViewModel {
         if let error = error {
             switch error {
             case .noInternet:
-                if localCurrencyList.count > 0 {
-                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
-                    currencyList = localCurrencyList
-                } else {
-                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. You don't have any local data.Please connect to internet and try again.", style: .danger).show()
-                }
                 return "No Internet"
             case .unknownError:
                 return "Unknown Error"
@@ -86,14 +90,21 @@ class CurrencyViewModel {
     }
 
     private func fetchCurrencyRateList() {
-        if localCurrencyRateList.count > 0 && isNotMoreThan30Min() {
-            currencyRateList = localCurrencyRateList
-        } else {
-            Task {
-                _ = await fetchCurrencyRatesFromAPI()
-                lastAPIFetchedTime = Date.now
+        ReachabilityManager.shared.$isReachable.sink { [unowned self] isReachable in
+            guard isReachable else {
+                currencyRateList = localCurrencyRateList
+                return
             }
-        }
+
+            if localCurrencyRateList.count > 0 && isNotMoreThan30Min() {
+                currencyRateList = localCurrencyRateList
+            } else {
+                Task {
+                    _ = await fetchCurrencyRatesFromAPI()
+                    lastAPIFetchedTime = Date.now
+                }
+            }
+        }.store(in: &subscription)
     }
 
     private func fetchCurrencyRatesFromAPI() async -> String? {
@@ -106,12 +117,6 @@ class CurrencyViewModel {
         if let error = error {
             switch error {
             case .noInternet:
-                if localCurrencyRateList.count > 0 {
-                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
-                    currencyRateList = localCurrencyRateList
-                } else {
-                    await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. You don't have any local data.Please connect to internet and try again.", style: .danger).show()
-                }
                 return "No Internet"
             case .unknownError:
                 return "Unknown Error"

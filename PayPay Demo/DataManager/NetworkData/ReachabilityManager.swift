@@ -12,8 +12,8 @@ import NotificationBannerSwift
 class ReachabilityManager {
     var reachability: NetworkReachabilityManager?
 
-    var isReachable = true
     static let shared: ReachabilityManager = ReachabilityManager()
+    @Published var isReachable = true
 
     private init() {
         reachability = NetworkReachabilityManager()
