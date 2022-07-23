@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        configureKeyboard()
         setupEntryPoint()
         return true
     }
@@ -41,5 +43,14 @@ extension AppDelegate {
         window.rootViewController = navigationViewController
         window.makeKeyAndVisible()
         self.window = window
+    }
+
+    fileprivate func configureKeyboard() {
+        // IQKeyboardManager Configuration
+        IQKeyboardManager.shared.enable = true
+        // IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses = [UIView.self, UIStackView.self]
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = true
+        IQKeyboardManager.shared.previousNextDisplayMode = .default
     }
 }
