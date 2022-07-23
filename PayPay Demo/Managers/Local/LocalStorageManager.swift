@@ -8,8 +8,8 @@
 import Foundation
 
 public enum LocalStorageKeys: String, CaseIterable {
-    case currencyList           = "currencyList"
-    case currencyConversionRate = "currencyConversionRate"
+    case currencyNameList           = "currencyNameList"
+    case currencyConversionRateList = "currencyConversionRateList"
 }
 
 @propertyWrapper

@@ -6,32 +6,107 @@
 //
 
 import Foundation
+import NotificationBannerSwift
 
-struct CurrencyViewModel {
-    public var currencyList: CurrenciesModel?
+class CurrencyViewModel {
+    @LocalStorage(key: .currencyNameList, defaultValue: [:])
+    var localCurrencyList: [String: String]
 
-    private let session = URLSession.shared
+    @LocalStorage(key: .currencyConversionRateList, defaultValue: [:])
+    var localCurrencyRateList: [String: Double]
 
-    mutating func fetchAllCurrencies() async throws {
-        let (result, error) = try await session.data(from: URL(string: "https://openexchangerates.org/api/currencies.json?app_id=8204926d529943e7b59cc082e4a6dc8c")!)
+    @Published var currencyList: [String: String]?
+    @Published var currencyRateList: [String: Double]?
 
-        let arrayData = String(data: result, encoding: .utf8)?
-            .replacingOccurrences(of: "{", with: "")
-            .replacingOccurrences(of: "}", with: "")
-            .replacingOccurrences(of: "\n", with: "")
-            .replacingOccurrences(of: "\"", with: "")
-            .components(separatedBy: ",")
-
-
-        var currencyList: [String : String] = [:]
-
-        arrayData?.forEach({ data in
-            let split = data.components(separatedBy: ": ")
-            currencyList[split[0].replacingOccurrences(of: " ", with: "")] = split[1]
-        })
-
-        self.currencyList = CurrenciesModel(currency: currencyList)
-
+    func fetchData() {
+        fetchCurrencyList()
+        fetchCurrencyRateList()
     }
 
+    private func fetchCurrencyList() {
+        if localCurrencyList.count > 0 {
+            currencyList = localCurrencyList
+        } else {
+            Task {
+                _ = await fetchCurrencyListFromAPI()
+            }
+        }
+    }
+
+    private func fetchCurrencyListFromAPI() async -> String? {
+        let params = [
+            "app_id": APP_ID
+        ] as? [String: Any]
+
+        let (result, error) = await RequestManager.shared.request(using: .CURRENCIES_JSONN, queryParams: params, parameterType: .query, type: .get)
+
+        if let error = error {
+            switch error {
+            case .noInternet:
+                await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                return "No Internet"
+            case .unknownError:
+                return "Unknown Error"
+            case .errorDescription,
+                    .networkProblem:
+                return "Network Problem"
+            }
+        }
+
+        guard let result = result else {
+            return "Data retrieve error"
+        }
+
+        let json = try? JSONSerialization.jsonObject(with: result, options: .mutableContainers) as? [String: AnyObject]
+
+        let currencyList: [String: String] = json as! [String: String]
+
+        self.currencyList = currencyList
+        localCurrencyList = currencyList
+
+        return nil
+    }
+
+    private func fetchCurrencyRateList() {
+        if localCurrencyRateList.count > 0 {
+            currencyRateList = localCurrencyRateList
+        } else {
+            Task {
+                _ = await fetchCurrencyRatesFromAPI()
+            }
+        }
+    }
+
+    private func fetchCurrencyRatesFromAPI() async -> String? {
+        let params = [
+            "app_id": APP_ID
+        ] as? [String: Any]
+
+        let (result, error) = await RequestManager.shared.request(using: .LATEST_JSON, queryParams: params, parameterType: .query, type: .get)
+
+        if let error = error {
+            switch error {
+            case .noInternet:
+                await FloatingNotificationBanner(title: "No Internet!!!", subtitle: "There is no internet. Please connect to internet and try again.", style: .warning).show()
+                return "No Internet"
+            case .unknownError:
+                return "Unknown Error"
+            case .errorDescription,
+                    .networkProblem:
+                return "Network Problem"
+            }
+        }
+
+        guard let result = result else {
+            return "Data retrieve error"
+        }
+
+        let json = try? JSONSerialization.jsonObject(with: result, options: .mutableContainers) as? [String: AnyObject]
+        let currencyRateList: [String: Double] = json?["rates"] as! [String: Double]
+
+        self.currencyRateList = currencyRateList
+        localCurrencyRateList = currencyRateList
+
+        return nil
+    }
 }

@@ -15,7 +15,6 @@
 		35868EA92888362500ED08DA /* PayPay_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EA82888362500ED08DA /* PayPay_DemoTests.swift */; };
 		35868EB32888362500ED08DA /* PayPay_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EB22888362500ED08DA /* PayPay_DemoUITests.swift */; };
 		35868EB52888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */; };
-		35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC22888378700ED08DA /* CurrencyModel.swift */; };
 		35868EC62888382000ED08DA /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC52888382000ED08DA /* CurrencyViewModel.swift */; };
 		35868EC828894C5B00ED08DA /* CurrencyConverterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */; };
 		35868ED028894FF700ED08DA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 35868ECF28894FF700ED08DA /* Alamofire */; };
@@ -64,7 +63,6 @@
 		35868EAE2888362500ED08DA /* PayPay DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PayPay DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35868EB22888362500ED08DA /* PayPay_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPay_DemoUITests.swift; sourceTree = "<group>"; };
 		35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayPay_DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		35868EC22888378700ED08DA /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		35868EC52888382000ED08DA /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		35868EC728894C5B00ED08DA /* CurrencyConverterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterVC.swift; sourceTree = "<group>"; };
 		35868ED22889561E00ED08DA /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
@@ -128,6 +126,13 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
+		3551C2E7288BE1910068BC90 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		35868E852888362400ED08DA = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +161,7 @@
 				35868ECB28894F7500ED08DA /* Managers */,
 				35868EC928894C6000ED08DA /* Views */,
 				35868EC42888380600ED08DA /* ViewModels */,
-				35868EC12888375B00ED08DA /* Models */,
+				3551C2E7288BE1910068BC90 /* Models */,
 				35868E912888362400ED08DA /* AppDelegate.swift */,
 				35868E9A2888362500ED08DA /* Assets.xcassets */,
 				35868E9C2888362500ED08DA /* LaunchScreen.storyboard */,
@@ -180,14 +185,6 @@
 				35868EB42888362600ED08DA /* PayPay_DemoUITestsLaunchTests.swift */,
 			);
 			path = "PayPay DemoUITests";
-			sourceTree = "<group>";
-		};
-		35868EC12888375B00ED08DA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				35868EC22888378700ED08DA /* CurrencyModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		35868EC42888380600ED08DA /* ViewModels */ = {
@@ -454,7 +451,6 @@
 				35868EF3288978B700ED08DA /* DropDownCell.swift in Sources */,
 				35868E922888362400ED08DA /* AppDelegate.swift in Sources */,
 				35868EEF288978B200ED08DA /* DPDConstants.swift in Sources */,
-				35868EC32888378700ED08DA /* CurrencyModel.swift in Sources */,
 				3539E2F3288B0C13009AA81F /* LocalStorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
