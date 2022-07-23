@@ -5,4 +5,119 @@
 //  Created by Mahbubur Rashid on 21/7/22.
 //
 
-import Foundation
+import UIKit
+import Combine
+import SnapKit
+import NotificationBannerSwift
+
+class CurrencyConverterVC: UIViewController {
+    private lazy var amountTextFiled: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter Amount"
+        textField.keyboardType = .numberPad
+        textField.borderStyle = .none
+        textField.layer.borderWidth = 0.5
+        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.cornerRadius = 5
+
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.size.height))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+
+        textField.rightView = paddingView
+        textField.rightViewMode = .always
+
+        textField.addTarget(self, action: #selector(onChangeAmount), for: .editingChanged)
+
+        return textField
+    }()
+
+    private lazy var currencySelectionView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.gray.cgColor
+        view.layer.borderWidth = 0.5
+        view.layer.cornerRadius =  5
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDropDown)))
+        return view
+    }()
+
+    private lazy var currencyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "USD"
+        return label
+    }()
+
+    private lazy var downArrow: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image =  UIImage(systemName: "arrowtriangle.down.fill")
+        imageView.tintColor = .black
+        return imageView
+    }()
+
+    private let dropDownView = DropDown()
+    private var subscription = Set<AnyCancellable>()
+
+    override func viewDidLoad() {
+        view.backgroundColor = .white
+
+        setupUI()
+    }
+}
+
+extension CurrencyConverterVC {
+    private func setupUI() {
+        view.addSubview(amountTextFiled)
+        amountTextFiled.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(20)
+            make.height.equalTo(45)
+        }
+
+        view.addSubview(currencySelectionView)
+        currencySelectionView.snp.makeConstraints { make in
+            make.top.equalTo(amountTextFiled.snp.top)
+            make.leading.equalTo(amountTextFiled.snp.trailing).offset(10)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+            make.bottom.equalTo(amountTextFiled.snp.bottom)
+        }
+
+        currencySelectionView.addSubview(currencyLabel)
+        currencyLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
+        }
+
+        currencySelectionView.addSubview(downArrow)
+        downArrow.snp.makeConstraints { make in
+            make.centerY.equalTo(currencyLabel.snp.centerY)
+            make.leading.equalTo(currencyLabel.snp.trailing).offset(5)
+            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalTo(15)
+            make.height.equalTo(15)
+        }
+
+        setupFunctionality()
+    }
+}
+
+extension CurrencyConverterVC {
+    private func setupFunctionality() {
+        dropDownView.anchorView = currencySelectionView
+        dropDownView.dataSource = ["usd", "aud"]
+        dropDownView.selectionAction = { [unowned self] (_, item) in
+            currencyLabel.text = item.uppercased()
+            dropDownView.hide()
+        }
+    }
+}
+
+extension CurrencyConverterVC {
+    @objc private func showDropDown() {
+        dropDownView.show()
+    }
+
+    @objc private func onChangeAmount() {
+
+    }
+}
