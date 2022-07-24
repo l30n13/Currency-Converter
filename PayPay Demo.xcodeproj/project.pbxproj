@@ -34,6 +34,8 @@
 		35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EED288978A300ED08DA /* DropDown+Appearance.swift */; };
 		35868EF3288978B700ED08DA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEC288978A300ED08DA /* DropDownCell.swift */; };
 		35868EF4288978B700ED08DA /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEB288978A300ED08DA /* DropDown.swift */; };
+		35F3A4C8288D3B6600738CD5 /* CurrencyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3A4C7288D3B6600738CD5 /* CurrencyListViewModel.swift */; };
+		35F3A4CA288D3C3300738CD5 /* CurrencyRateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3A4C9288D3C3200738CD5 /* CurrencyRateListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		35868EEB288978A300ED08DA /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		35868EEC288978A300ED08DA /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		35868EED288978A300ED08DA /* DropDown+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		35F3A4C7288D3B6600738CD5 /* CurrencyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewModel.swift; sourceTree = "<group>"; };
+		35F3A4C9288D3C3200738CD5 /* CurrencyRateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				35868EC52888382000ED08DA /* CurrencyViewModel.swift */,
+				35F3A4C7288D3B6600738CD5 /* CurrencyListViewModel.swift */,
+				35F3A4C9288D3C3200738CD5 /* CurrencyRateListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -453,6 +459,8 @@
 				35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */,
 				3539E2F6288B11C5009AA81F /* RequestManagerEnums.swift in Sources */,
 				35868EF1288978B200ED08DA /* DPDKeyboardListener.swift in Sources */,
+				35F3A4C8288D3B6600738CD5 /* CurrencyListViewModel.swift in Sources */,
+				35F3A4CA288D3C3300738CD5 /* CurrencyRateListViewModel.swift in Sources */,
 				35868EF4288978B700ED08DA /* DropDown.swift in Sources */,
 				35868ED32889561E00ED08DA /* NotificationName+Extension.swift in Sources */,
 				35868EF0288978B200ED08DA /* DPDUIView+Extension.swift in Sources */,

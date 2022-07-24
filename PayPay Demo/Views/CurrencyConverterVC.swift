@@ -144,13 +144,19 @@ extension CurrencyConverterVC {
 
 extension CurrencyConverterVC {
     private func bindView() {
-        viewModel.$currencyRateList.sink { [unowned self] (data) in
-            dropDownView.dataSource = data?.sorted { $0.key < $1.key }.map { $0.key } ?? []
-            DispatchQueue.main.async {
-                if !(self.viewModel.currencyList?.isEmpty ?? false) {
-                    self.currenciesTableView.reloadData()
+        viewModel.$currencyRateListViewModel.sink { [unowned self] (viewModel) in
+            viewModel?.$currencyRateList.sink { [unowned self] (data) in
+                dropDownView.dataSource = data?.sorted { $0.key < $1.key }.map { $0.key } ?? []
+                DispatchQueue.main.async {
+                    guard let currencyList = self.viewModel.currencyistViewModel.currencyList else {
+                        return
+                    }
+
+                    if !currencyList.isEmpty {
+                        self.currenciesTableView.reloadData()
+                    }
                 }
-            }
+            }.store(in: &subscription)
         }.store(in: &subscription)
     }
 }
@@ -167,7 +173,7 @@ extension CurrencyConverterVC {
 
 extension CurrencyConverterVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.currencyRateList?.count ?? 0
+        return viewModel.currencyRateListViewModel.currencyRateList?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -177,7 +183,7 @@ extension CurrencyConverterVC: UITableViewDataSource {
             currencyCode: viewModel.sortedCurrencyCode?[indexPath.row],
             currencyDetails: viewModel.sortedCurrencyCodeDetails?[indexPath.row],
             amount: Double(amountTextFiled.text ?? "0.0") ?? 0.0,
-            currencyValue: viewModel.currencyRateList?[viewModel.sortedCurrencyCode?[indexPath.row] ?? "USD"] ?? 0.0
+            currencyValue: viewModel.currencyRateListViewModel.currencyRateList?[viewModel.sortedCurrencyCode?[indexPath.row] ?? "USD"] ?? 0.0
         )
         return cell
     }
