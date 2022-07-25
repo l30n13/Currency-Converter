@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class CurrenctListViewModel: CurrencyListViewModelProtocol {
+class CurrencyListViewModel: CurrencyListViewModelProtocol {
     @LocalStorage(key: .currencyNameList, defaultValue: [:])
     var localCurrencyList: [String: String]
 

@@ -13,29 +13,29 @@ class CurrencyViewModel {
     @LocalStorage(key: .lastAPIFetchedTime, defaultValue: Date())
     var lastAPIFetchedTime: Date
 
-    var currencyistViewModel: CurrenctListViewModel!
+    var currencyListViewModel: CurrencyListViewModel!
     @Published var currencyRateListViewModel: CurrencyRateListViewModel!
 
     var baseCurrency: String = "USD"
     var selectedCurrencyCode: String = "USD"
 
     var sortedCurrencyCode: [String]? {
-        currencyistViewModel.currencyList?.sorted { $0.key < $1.key }.map { $0.key }
+        currencyListViewModel.currencyList?.sorted { $0.key < $1.key }.map { $0.key }
     }
     var sortedCurrencyCodeDetails: [String]? {
-        currencyistViewModel.currencyList?.sorted { $0.key < $1.key }.map { $0.value }
+        currencyListViewModel.currencyList?.sorted { $0.key < $1.key }.map { $0.value }
     }
 
     init() {
-        currencyistViewModel = CurrenctListViewModel(self)
+        currencyListViewModel = CurrencyListViewModel(self)
         currencyRateListViewModel = CurrencyRateListViewModel(self)
     }
 
     func fetchData() {
-        currencyistViewModel = CurrenctListViewModel(self)
+        currencyListViewModel = CurrencyListViewModel(self)
         currencyRateListViewModel = CurrencyRateListViewModel(self)
 
-        currencyistViewModel.fetchCurrencyList()
+        currencyListViewModel.fetchCurrencyList()
         currencyRateListViewModel.fetchCurrencyRateList()
     }
 }

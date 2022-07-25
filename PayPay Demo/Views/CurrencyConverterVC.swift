@@ -148,7 +148,7 @@ extension CurrencyConverterVC {
             viewModel?.$currencyRateList.sink { [unowned self] (data) in
                 dropDownView.dataSource = data?.sorted { $0.key < $1.key }.map { $0.key } ?? []
                 DispatchQueue.main.async {
-                    guard let currencyList = self.viewModel.currencyistViewModel.currencyList else {
+                    guard let currencyList = self.viewModel.currencyListViewModel.currencyList else {
                         return
                     }
 
