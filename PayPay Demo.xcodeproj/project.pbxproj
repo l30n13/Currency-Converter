@@ -136,13 +136,6 @@
 			path = LocalData;
 			sourceTree = "<group>";
 		};
-		3551C2E7288BE1910068BC90 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		35868E852888362400ED08DA = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +164,6 @@
 				35868ECB28894F7500ED08DA /* DataManager */,
 				35868EC928894C6000ED08DA /* Views */,
 				35868EC42888380600ED08DA /* ViewModels */,
-				3551C2E7288BE1910068BC90 /* Models */,
 				35868E912888362400ED08DA /* AppDelegate.swift */,
 				35868E9A2888362500ED08DA /* Assets.xcassets */,
 				35868E9C2888362500ED08DA /* LaunchScreen.storyboard */,
