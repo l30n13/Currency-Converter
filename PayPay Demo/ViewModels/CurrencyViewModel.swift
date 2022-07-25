@@ -11,7 +11,7 @@ import NotificationBannerSwift
 
 class CurrencyViewModel {
     @LocalStorage(key: .lastAPIFetchedTime, defaultValue: Date())
-    var lastAPIFetchedTime: Date
+    var lastAPIFetchedTime: Date // For saving the latest time when the API is updating.
 
     var currencyListViewModel: CurrencyListViewModel!
     @Published var currencyRateListViewModel: CurrencyRateListViewModel!
@@ -41,6 +41,7 @@ class CurrencyViewModel {
 }
 
 extension CurrencyViewModel {
+    // Check if the last time API calling time is more than 30 minutes
     func isNotMoreThan30Min() -> Bool {
         let timePassed = Int(Date().timeIntervalSince(lastAPIFetchedTime))
 
@@ -49,6 +50,7 @@ extension CurrencyViewModel {
 }
 
 extension CurrencyViewModel {
+    // For updating the whole Currency Rate List into corresponding selected currency
     func updateCurrencyRate() {
         let currentRate = (currencyRateListViewModel.currencyRateList?[baseCurrency] ?? 0.0) / (currencyRateListViewModel.currencyRateList?[selectedCurrencyCode] ?? 0.0)
         baseCurrency = selectedCurrencyCode

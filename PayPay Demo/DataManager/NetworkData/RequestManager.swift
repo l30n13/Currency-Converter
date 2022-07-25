@@ -68,6 +68,7 @@ struct RequestManager {
 }
 
 extension RequestManager {
+    /// For adding path data into URL like `example.com/data1/data2`
     func addPathIntoURL(existingURL: URL?, _ data: [String]?) -> URL? {
         var url = existingURL
         data?.forEach { (value) in
@@ -77,6 +78,7 @@ extension RequestManager {
         return url
     }
 
+    /// For adding query data into URL like `example.com/?key1=data1&key2=data2`
     func addQueryIntoURL(existingURL: URL?, _ data: [String: Any]?) -> URL? {
         var url = existingURL
         var components = URLComponents(string: url?.absoluteString ?? "")

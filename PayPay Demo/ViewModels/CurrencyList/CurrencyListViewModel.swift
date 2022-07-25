@@ -10,9 +10,9 @@ import Combine
 
 class CurrencyListViewModel: CurrencyListViewModelProtocol {
     @LocalStorage(key: .currencyNameList, defaultValue: [:])
-    var localCurrencyList: [String: String]
+    var localCurrencyList: [String: String] // For saving data into local
 
-    @Published var currencyList: [String: String]?
+    @Published var currencyList: [String: String]? // Listing to currency list change
 
     var subscription = Set<AnyCancellable>()
 
@@ -23,7 +23,7 @@ class CurrencyListViewModel: CurrencyListViewModelProtocol {
     }
 
     func fetchCurrencyList() {
-        ReachabilityManager.shared.$isReachable.sink { [unowned self] isReachable in
+        ReachabilityManager.shared.$isReachable.sink { [unowned self] isReachable in // On change network connectivity fetch data from API or Local
             guard isReachable else {
                 currencyList = localCurrencyList
                 return
@@ -69,6 +69,7 @@ class CurrencyListViewModel: CurrencyListViewModelProtocol {
 
         let json = try? JSONSerialization.jsonObject(with: result, options: .mutableContainers) as? [String: AnyObject]
 
+        // Converting data into Dictionary
         let currencyList: [String: String] = json as! [String: String]
 
         self.currencyList = currencyList
