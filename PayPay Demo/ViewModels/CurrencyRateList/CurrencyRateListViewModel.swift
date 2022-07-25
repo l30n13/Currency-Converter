@@ -8,15 +8,15 @@
 import Foundation
 import Combine
 
-class CurrencyRateListViewModel: ObservableObject {
+class CurrencyRateListViewModel: CurrencyRateListViewModelProtocol {
     @LocalStorage(key: .currencyConversionRateList, defaultValue: [:])
     var localCurrencyRateList: [String: Double]
 
     @Published var currencyRateList: [String: Double]?
 
-    private var subscription = Set<AnyCancellable>()
+    var subscription = Set<AnyCancellable>()
 
-    private weak var viewModel: CurrencyViewModel?
+    weak var viewModel: CurrencyViewModel?
 
     init(_ viewModel: CurrencyViewModel) {
         self.viewModel = viewModel
@@ -37,19 +37,19 @@ class CurrencyRateListViewModel: ObservableObject {
                 currencyRateList = localCurrencyRateList
             } else {
                 Task {
-                    _ = await fetchCurrencyRatesFromAPI()
+                    let params = [
+                        "app_id": APP_ID
+                    ] as? [String: Any]
+
+                    _ = await fetchCurrencyRatesFromAPI(apiURL: .LATEST_JSON, params: params)
                     viewModel.lastAPIFetchedTime = Date.now
                 }
             }
         }.store(in: &subscription)
     }
 
-    private func fetchCurrencyRatesFromAPI() async -> String? {
-        let params = [
-            "app_id": APP_ID
-        ] as? [String: Any]
-
-        let (result, error) = await RequestManager.shared.request(using: .LATEST_JSON, queryParams: params, parameterType: .query, type: .get)
+    func fetchCurrencyRatesFromAPI(apiURL: HttpURL, params: [String: Any]?) async -> String? {
+        let (result, error) = await RequestManager.shared.request(using: apiURL, queryParams: params, parameterType: .query, type: .get)
 
         if let error = error {
             switch error {

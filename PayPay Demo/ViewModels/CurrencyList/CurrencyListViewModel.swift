@@ -8,15 +8,15 @@
 import Foundation
 import Combine
 
-class CurrenctListViewModel {
+class CurrenctListViewModel: CurrencyListViewModelProtocol {
     @LocalStorage(key: .currencyNameList, defaultValue: [:])
     var localCurrencyList: [String: String]
 
     @Published var currencyList: [String: String]?
 
-    private var subscription = Set<AnyCancellable>()
+    var subscription = Set<AnyCancellable>()
 
-    private weak var viewModel: CurrencyViewModel?
+    weak var viewModel: CurrencyViewModel?
 
     init(_ viewModel: CurrencyViewModel) {
         self.viewModel = viewModel
@@ -37,19 +37,19 @@ class CurrenctListViewModel {
                 currencyList = localCurrencyList
             } else {
                 Task {
-                    _ = await fetchCurrencyListFromAPI()
+                    let params = [
+                        "app_id": APP_ID
+                    ] as? [String: Any]
+
+                    _ = await fetchCurrencyListFromAPI(apiURL: .CURRENCIES_JSONN, params: params)
                     viewModel.lastAPIFetchedTime = Date.now
                 }
             }
         }.store(in: &subscription)
     }
 
-    private func fetchCurrencyListFromAPI() async -> String? {
-        let params = [
-            "app_id": APP_ID
-        ] as? [String: Any]
-
-        let (result, error) = await RequestManager.shared.request(using: .CURRENCIES_JSONN, queryParams: params, parameterType: .query, type: .get)
+    internal func fetchCurrencyListFromAPI(apiURL: HttpURL, params: [String: Any]?) async -> String? {
+        let (result, error) = await RequestManager.shared.request(using: apiURL, queryParams: params, parameterType: .query, type: .get)
 
         if let error = error {
             switch error {
