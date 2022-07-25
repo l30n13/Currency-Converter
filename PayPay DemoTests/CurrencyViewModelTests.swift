@@ -20,6 +20,14 @@ class CurrencyViewModelTests: XCTestCase {
         UserDefaults.standard.removeObject(forKey: LocalStorageKeys.lastAPIFetchedTime.rawValue)
     }
 
+    func test_is_currency_list_view_model_instance_is_created() {
+        XCTAssertNotNil(currencyViewModel?.currencyListViewModel)
+    }
+
+    func test_is_currency_list_rate_view_model_instance_is_created() {
+        XCTAssertNotNil(currencyViewModel?.currencyRateListViewModel)
+    }
+
     func test_is_not_more_than_30_min_return_true() {
         let result = currencyViewModel?.isNotMoreThan30Min()
 
