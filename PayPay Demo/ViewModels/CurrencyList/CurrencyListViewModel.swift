@@ -48,7 +48,7 @@ class CurrencyListViewModel: CurrencyListViewModelProtocol {
         }.store(in: &subscription)
     }
 
-    internal func fetchCurrencyListFromAPI(apiURL: HttpURL, params: [String: Any]?) async -> String? {
+    func fetchCurrencyListFromAPI(apiURL: HttpURL, params: [String: Any]?) async -> String? {
         let (result, error) = await RequestManager.shared.request(using: apiURL, queryParams: params, parameterType: .query, type: .get)
 
         if let error = error {
