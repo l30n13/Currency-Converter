@@ -33,4 +33,11 @@ class CurrencyViewModelTests: XCTestCase {
 
         XCTAssertTrue(result ?? false, "It should return TRUE but returned FALSE")
     }
+
+    func test_is_not_more_than_30_min_return_false() {
+        currencyViewModel?.lastAPIFetchedTime = Date().addingTimeInterval(-(35*60))
+        let result = currencyViewModel?.isNotMoreThan30Min()
+
+        XCTAssertFalse(result ?? false, "It should return TRUE but returned FALSE")
+    }
 }
