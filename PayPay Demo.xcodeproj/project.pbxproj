@@ -37,8 +37,11 @@
 		35868EF2288978B700ED08DA /* DropDown+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EED288978A300ED08DA /* DropDown+Appearance.swift */; };
 		35868EF3288978B700ED08DA /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEC288978A300ED08DA /* DropDownCell.swift */; };
 		35868EF4288978B700ED08DA /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35868EEB288978A300ED08DA /* DropDown.swift */; };
+		35EF2B8D288F2748002E593E /* MockCurrencyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF2B8C288F2748002E593E /* MockCurrencyListViewModel.swift */; };
 		35F3A4C8288D3B6600738CD5 /* CurrencyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3A4C7288D3B6600738CD5 /* CurrencyListViewModel.swift */; };
 		35F3A4CA288D3C3300738CD5 /* CurrencyRateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F3A4C9288D3C3200738CD5 /* CurrencyRateListViewModel.swift */; };
+		35F420A9288FCF69000BD96B /* MockCurrencyRateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F420A8288FCF69000BD96B /* MockCurrencyRateListViewModel.swift */; };
+		35F420AB288FCF84000BD96B /* CurrencyRateListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F420AA288FCF84000BD96B /* CurrencyRateListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +94,11 @@
 		35868EEB288978A300ED08DA /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
 		35868EEC288978A300ED08DA /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		35868EED288978A300ED08DA /* DropDown+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DropDown+Appearance.swift"; sourceTree = "<group>"; };
+		35EF2B8C288F2748002E593E /* MockCurrencyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyListViewModel.swift; sourceTree = "<group>"; };
 		35F3A4C7288D3B6600738CD5 /* CurrencyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewModel.swift; sourceTree = "<group>"; };
 		35F3A4C9288D3C3200738CD5 /* CurrencyRateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateListViewModel.swift; sourceTree = "<group>"; };
+		35F420A8288FCF69000BD96B /* MockCurrencyRateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyRateListViewModel.swift; sourceTree = "<group>"; };
+		35F420AA288FCF84000BD96B /* CurrencyRateListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,9 +205,9 @@
 		35868EA72888362500ED08DA /* PayPay DemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				35EF2B8B288F2728002E593E /* MockViewModels */,
 				3551C2F2288C64FC0068BC90 /* NetworkManagerTests.swift */,
 				3551C2F4288C65820068BC90 /* CurrencyViewModelTests.swift */,
-				357353B2288E913F0037B3E4 /* CurrencyListViewModelTests.swift */,
 			);
 			path = "PayPay DemoTests";
 			sourceTree = "<group>";
@@ -305,6 +311,33 @@
 				35868EED288978A300ED08DA /* DropDown+Appearance.swift */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		35EF2B8B288F2728002E593E /* MockViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				35F420A6288FCF38000BD96B /* CurrencyList */,
+				35F420A7288FCF44000BD96B /* CurrencyRateList */,
+			);
+			path = MockViewModels;
+			sourceTree = "<group>";
+		};
+		35F420A6288FCF38000BD96B /* CurrencyList */ = {
+			isa = PBXGroup;
+			children = (
+				35EF2B8C288F2748002E593E /* MockCurrencyListViewModel.swift */,
+				357353B2288E913F0037B3E4 /* CurrencyListViewModelTests.swift */,
+			);
+			path = CurrencyList;
+			sourceTree = "<group>";
+		};
+		35F420A7288FCF44000BD96B /* CurrencyRateList */ = {
+			isa = PBXGroup;
+			children = (
+				35F420A8288FCF69000BD96B /* MockCurrencyRateListViewModel.swift */,
+				35F420AA288FCF84000BD96B /* CurrencyRateListViewModelTests.swift */,
+			);
+			path = CurrencyRateList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,9 +530,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F420A9288FCF69000BD96B /* MockCurrencyRateListViewModel.swift in Sources */,
 				357353B3288E913F0037B3E4 /* CurrencyListViewModelTests.swift in Sources */,
 				3551C2F3288C64FC0068BC90 /* NetworkManagerTests.swift in Sources */,
+				35F420AB288FCF84000BD96B /* CurrencyRateListViewModelTests.swift in Sources */,
 				3551C2F5288C65820068BC90 /* CurrencyViewModelTests.swift in Sources */,
+				35EF2B8D288F2748002E593E /* MockCurrencyListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
